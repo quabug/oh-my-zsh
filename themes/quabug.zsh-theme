@@ -25,14 +25,13 @@ local _ssh_tty_=${SSH_TTY:+"[%n@%m]"}
 local -A _pc_
 _pc_['success']=${1:-'green'}
 _pc_['failure']=${2:-'124'}
-_pc_['vcs']=${3:-'242'}
 _pc_['main']=${4:-'071'}
 
 local -A _color_
-_color_['main']="%{%F{$_pc_['main']}%}"
-_color_['ret']="%(?.%F{$_pc_['success']}.%F{$_pc_['failure']})"
-_color_['end']="%{%f%}"
-_color_['vcs']="%{%F{$_pc_['vcs']%}"
+_color_['main']="%{$FG[071]%}"
+_color_['ret']="%(?.$FG[green].$FG[124])"
+_color_['end']=%{$FX[reset]%}
+_color_['vcs']=%{$FG[242]%}
 
 # Set required options.
 setopt promptsubst
