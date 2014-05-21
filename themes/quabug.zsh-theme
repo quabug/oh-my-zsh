@@ -32,6 +32,7 @@ _color_['main']="%{$FG[071]%}"
 _color_['ret']="%(?.$FG[green].$FG[124])"
 _color_['end']=%{$FX[reset]%}
 _color_['vcs']=%{$FG[242]%}
+_color_['blue']=%{$fg[blue]%}
 
 # Set required options.
 setopt promptsubst
@@ -48,8 +49,8 @@ zstyle ':vcs_info:*' enable hg bzr git svn
 zstyle ':vcs_info:*:*' check-for-changes true # Can be slow on big repos.
 zstyle ':vcs_info:*:*' unstagedstr '%F{yellow}●'
 zstyle ':vcs_info:*:*' stagedstr '%F{red}●'
-zstyle ':vcs_info:*:*' actionformats "%S [%F{blue}%b%u%c$_color_['main']]" "%r/%s (%a)"
-zstyle ':vcs_info:*:*' formats "%S [%F{blue}%b%u%c$_color_['main']]" "%r/%s"
+zstyle ':vcs_info:*:*' actionformats "%S [$_color_['blue']%b%u%c$_color_['main']]" "%r/%s (%a)"
+zstyle ':vcs_info:*:*' formats "%S [$_color_['blue']%b%u%c$_color_['main']]" "%r/%s"
 zstyle ':vcs_info:*:*' nvcsformats "%~" ""
 
 # Define prompts.
