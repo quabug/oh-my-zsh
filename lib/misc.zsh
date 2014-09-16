@@ -9,9 +9,8 @@ bindkey "^[m" copy-prev-shell-word
 setopt long_list_jobs
 
 ## pager
-export PAGER=less
-export LC_CTYPE=$LANG
-
+export PAGER="less"
+export LESS="-R"
 
 ## beep sound
 setopt NO_BEEP

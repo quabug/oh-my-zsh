@@ -8,35 +8,28 @@ alias -- -='cd -'
 
 # Super user
 alias _='sudo'
+alias please='sudo'
 
 #alias g='grep -in'
 
 # Show history
-alias history='fc -l 1'
-
+if [ "$HIST_STAMPS" = "mm/dd/yyyy" ]
+then
+    alias history='fc -fl 1'
+elif [ "$HIST_STAMPS" = "dd.mm.yyyy" ]
+then
+    alias history='fc -El 1'
+elif [ "$HIST_STAMPS" = "yyyy-mm-dd" ]
+then
+    alias history='fc -il 1'
+else
+    alias history='fc -l 1'
+fi
 # List direcory contents
-alias la='ls -a'
 alias lsa='ls -lah'
-alias l='ls -la'
+alias l='ls -lah'
 alias ll='ls -lh'
-#alias sl=ls # often screw this up
+alias la='ls -lAh'
 
 alias afind='ack-grep -il'
 
-
-#alias ssh="TERM=xterm ssh"
-alias w3m="TERM=xterm w3m"
-alias trn="TERM=xterm trn -x -X"
-#alias irssi="irssi --hostname=quabug.net"
-alias sshproxy="ssh -D 8080 -qTnCN2"
-#alias wine='LC_ALL=zh_CN.UTF-8 /usr/bin/wine'
-#alias foobar2000='wine /win/d/Program\ Files/foobar2000/foobar2000.exe'
-
-alias fbreload="kill -s usr2 `pgrep fluxbox`"
-
-alias eclipse="/share/software/eclipse/eclipse"
-
-#alias emule='wine /win/d/Program\ Files/Xtreme/eMule.exe'
-
-## to trick zsh vcs_info on $HOME directory.
-alias config="GIT_DIR=$HOME/.config.git/ git --work-tree=$HOME"

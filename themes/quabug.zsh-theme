@@ -14,28 +14,15 @@
 
 # Customizable parameters.
 local _max_length_=30
-if [[ $TERM != 'linux' ]]; then
-    local _prompt_end_="%(!.❯❯❯.❯)"
-else
-    local _prompt_end_="%(!.>>>.>)"
+local _prompt_default_end_=❯
+local _prompt_root_end_=❯❯❯
+if [[ $TERM == 'linux' ]]; then
+    _prompt_default_end_='>'
+    _prompt_root_end_='>>>'
 fi
 
-local _ssh_tty_=${SSH_TTY:+"[%n@%m]"}
-
-local -A _pc_
-_pc_['success']=${1:-'green'}
-_pc_['failure']=${2:-'124'}
-_pc_['main']=${4:-'071'}
-
-local -A _color_
-_color_['main']="%{$FG[071]%}"
-_color_['ret']="%(?.$FG[green].$FG[124])"
-_color_['end']=%{$FX[reset]%}
-_color_['vcs']=%{$FG[242]%}
-_color_['blue']=%{$fg[blue]%}
-
 # Set required options.
-setopt promptsubst
+#setopt promptsubst
 
 # Load required modules.
 autoload -U add-zsh-hook
@@ -47,12 +34,12 @@ add-zsh-hook precmd vcs_info
 # Set vcs_info parameters.
 zstyle ':vcs_info:*' enable hg bzr git svn
 zstyle ':vcs_info:*:*' check-for-changes true # Can be slow on big repos.
-zstyle ':vcs_info:*:*' unstagedstr '%F{yellow}●'
-zstyle ':vcs_info:*:*' stagedstr '%F{red}●'
-zstyle ':vcs_info:*:*' actionformats "%S [$_color_['blue']%b%u%c$_color_['main']]" "%r/%s (%a)"
-zstyle ':vcs_info:*:*' formats "%S [$_color_['blue']%b%u%c$_color_['main']]" "%r/%s"
+zstyle ':vcs_info:*:*' unstagedstr "%F{yellow}"'●'"%{$reset_color%}"
+zstyle ':vcs_info:*:*' stagedstr "%F{red}"'●'"%{$reset_color%}"
+zstyle ':vcs_info:*:*' actionformats "%S [%{$FG[blue]%}%b%u%c%{$FG[071]%}]" "%r/%s (%a)"
+zstyle ':vcs_info:*:*' formats "%S [%{$FG['blue']%}%b%u%c%{$FG[071]%}]" "%r/%s"
 zstyle ':vcs_info:*:*' nvcsformats "%~" ""
 
 # Define prompts.
-PROMPT="$_color_['main']$_ssh_tty_%B%$_max_length_<..<"'${vcs_info_msg_0_%%.}'"%<<$_color_['ret']$_prompt_end_%b$_color_['end'] "
-RPROMPT="$_color_['vcs']"'$vcs_info_msg_1_'"$_color_['end']"
+PROMPT="%{$FG[071]%}${SSH_TTY:+[%n@%m]}%{$FX[bold]%}%$_max_length_<..<"'${vcs_info_msg_0_%%.}'"%<<%(!.$_prompt_root_end_.$_prompt_default_end_)%{$FX[no-bold]%} %{$reset_color%}"
+RPROMPT="%{$reset_color%} %{$FG[242]%}"'$vcs_info_msg_1_'"%{$reset_color%}"
