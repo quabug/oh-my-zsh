@@ -36,8 +36,8 @@ zstyle ':vcs_info:*' enable hg bzr git svn
 zstyle ':vcs_info:*:*' check-for-changes true # Can be slow on big repos.
 zstyle ':vcs_info:*:*' unstagedstr "%F{yellow}"'●'"%{$reset_color%}"
 zstyle ':vcs_info:*:*' stagedstr "%F{red}"'●'"%{$reset_color%}"
-zstyle ':vcs_info:*:*' actionformats "%S [%{$FG[blue]%}%b%u%c%{$FG[071]%}]" "%r/%s (%a)"
-zstyle ':vcs_info:*:*' formats "%S [%{$FG['blue']%}%b%u%c%{$FG[071]%}]" "%r/%s"
+zstyle ':vcs_info:*:*' actionformats "%S [%F{blue}%b%u%c%F{071}]" "%r/%s (%a)"
+zstyle ':vcs_info:*:*' formats "%S [%F{blue}%b%u%c%F{071}]" "%r/%s"
 zstyle ':vcs_info:*:*' nvcsformats "%~" ""
 
 # Define prompts.
