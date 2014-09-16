@@ -34,12 +34,12 @@ add-zsh-hook precmd vcs_info
 # Set vcs_info parameters.
 zstyle ':vcs_info:*' enable hg bzr git svn
 zstyle ':vcs_info:*:*' check-for-changes true # Can be slow on big repos.
-zstyle ':vcs_info:*:*' unstagedstr "%{$fg[yellow]%}●%{$reset_color%}"
-zstyle ':vcs_info:*:*' stagedstr "%{$fg[red]%}●%{$reset_color%}"
-zstyle ':vcs_info:*:*' actionformats "%S [%{$fg[blue]%}%b%u%c%{$reset_color%}%{$FG[071]%}]%{$reset_color%}" "%r/%s (%a)"
-zstyle ':vcs_info:*:*' formats "%S [%{$fg[blue]%}%b%u%c%{$reset_color%}%{$FG[071]%}]%{$reset_color%}" "%r/%s"
+zstyle ':vcs_info:*:*' unstagedstr "%{$fg[yellow]%}●"
+zstyle ':vcs_info:*:*' stagedstr "%{$fg[red]%}●"
+zstyle ':vcs_info:*:*' actionformats "%S [%{$fg[blue]%}%b%u%c%{$FG[071]%}]%{$reset_color%}" "%r/%s (%a)"
+zstyle ':vcs_info:*:*' formats "%S [%{$fg[blue]%}%b%u%c%{$FG[071]%}]%{$reset_color%}" "%r/%s"
 zstyle ':vcs_info:*:*' nvcsformats "%~" ""
 
 # Define prompts.
 PROMPT="%{$FG[071]%}${SSH_TTY:+[%n@%m]}%{$FX[bold]%}%$_max_length_<..<"'${vcs_info_msg_0_%%.}'"%{$FG[071]%}%(!.$_prompt_root_end_.$_prompt_default_end_)%{$FX[no-bold]%}%{$reset_color%} "
-RPROMPT="%{$reset_color%} %{$FG[242]%}"'$vcs_info_msg_1_'"%{$reset_color%}"
+RPROMPT=" %{$FG[242]%}"'$vcs_info_msg_1_'"%{$reset_color%}"
